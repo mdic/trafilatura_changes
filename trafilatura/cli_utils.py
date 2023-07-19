@@ -158,8 +158,8 @@ def determine_output_path(args, orig_filename, content, counter=None, new_filena
         output_path = path.join(args.output_dir, filename + extension)
     else:
         destination_directory = determine_counter_dir(args.output_dir, counter)
-        # use cryptographic hash on file contents to define name
-        filename = new_filename or generate_hash_filename(content)
+        # preserve original filename instead of generating a hashed filename!
+        filename = STRIP_EXTENSION.sub('', orig_filename)
         output_path = path.join(destination_directory, filename + extension)
     return output_path, destination_directory
 
